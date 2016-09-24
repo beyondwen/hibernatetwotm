@@ -9,7 +9,7 @@
             <generator class="native"/>
         </id>
         <property name="name"/>
-        <set name="employees" inverse="true" cascade="all">
+        <set name="employees" inverse="true" cascade="all-delete-orphan" >
             <key></key>
             <one-to-many class="Employee"/>
         </set>

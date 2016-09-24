@@ -13,7 +13,7 @@ public class HibernateUtils {
     private static SessionFactory sessionFactory;
 
     static {
-        StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure().build();
+        StandardServiceRegistry serviceRegistry =new StandardServiceRegistryBuilder().configure().build();
         try {
             sessionFactory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
         } catch (Exception e) {

@@ -3,9 +3,9 @@ package com.wenhao.hibernatetwotm.dao;
 import com.wenhao.hibernatetwotm.domain.Department;
 import com.wenhao.hibernatetwotm.domain.Employee;
 import com.wenhao.hibernatetwotm.utils.HibernateUtils;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -15,6 +15,13 @@ import java.util.Set;
  * Created by lenovo on 2016/09/24.
  */
 public class DomainDaoTest {
+    @Test
+    public void get() throws Exception {
+        Session session = HibernateUtils.getSession();
+        Employee employee = session.get(Employee.class, 18L);
+        System.out.println(employee.getDep());
+    }
+
     @Test
     public void delete() throws Exception {
         Session session = HibernateUtils.getSession();
@@ -33,6 +40,19 @@ public class DomainDaoTest {
         transaction.commit();
         session.close();
     }
+
+    @Test
+    public void deletemain() throws Exception {
+        Session session = HibernateUtils.getSession();
+        Transaction transaction = session.getTransaction();
+        transaction.begin();
+        Employee employee = session.get(Employee.class, 18L);
+        Department department = session.get(Department.class, 7L);
+        department.getEmployees().remove(employee);
+        transaction.commit();
+        session.close();
+    }
+
 
     @Test
     public void save() throws Exception {
