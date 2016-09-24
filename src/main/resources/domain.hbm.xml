@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.wenhao.hibernatetwotm.domain">
+    <!--一方-->
+    <class name="Department">
+        <id name="id">
+            <generator class="native"/>
+        </id>
+        <property name="name"/>
+        <set name="employees" inverse="true" cascade="all">
+            <key></key>
+            <one-to-many class="Employee"/>
+        </set>
+    </class>
+    <!--多方-->
+    <class name="Employee">
+        <id name="id">
+            <generator class="native"/>
+        </id>
+        <property name="name"/>
+        <many-to-one name="dep" class="Department"/>
+    </class>
+</hibernate-mapping>
